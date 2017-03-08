@@ -1,18 +1,19 @@
-local _M = {}
+local Stats = require 'components.stats'
+local Race = require 'components.race'
 
-local Stats = require "components.stats"
+local _M = {}
 
 function _M:new( o )
   o = o or {}
 
-  if o == {} then
+  if o[0] == nil then
     o[ 'name' ] = ''
 
     o[ 'player' ] = ''
 
     o[ 'level' ] = 1
 
-    o[ 'race' ] = nil
+    o[ 'race' ] = Race:Create( 'human' )
 
     o[ 'class' ] = nil
 
@@ -56,6 +57,8 @@ function _M:new( o )
       [ 'wisdom' ] = 1,
       [ 'charisma' ] = 1,
     }
+
+    print("new character")
 
   end
 

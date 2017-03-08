@@ -1,13 +1,12 @@
-Stats = {}
-Stats.__index = Stats
+local _M = {}
 
-function Stats:Create( scores )
+function _M:Create( stats )
   local this = {
     base = {},
     modifiers = {}
   }
 
-  for k, v in scores do
+  for k, v in pairs( stats ) do
     this.base[ k ] = v
   end
 
@@ -16,18 +15,18 @@ function Stats:Create( scores )
   return this
 end
 
-function Stats:AddModifier( id, val )
+function _M:AddModifier( id, val )
   self.modifiers[ id ] = {
     add = modifier.add or {},
     multiply = modifier.multiply or {}
   }
 end
 
-function Stats:RemoveModifier( id )
+function _M:RemoveModifier( id )
   self.modifiers[ id ] = nil
 end
 
-function Stats:Get( id )
+function _M:Get( id )
   local total = self.base[ id ] or 0
   local multiplier = 0
 
@@ -38,3 +37,5 @@ function Stats:Get( id )
 
   return total + ( total * multiplier )
 end
+
+return _M

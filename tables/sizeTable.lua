@@ -4,7 +4,7 @@
 
 -- Fine --
 local fineBiped = {
-  'display' = 'Fine',
+  display = 'Fine',
   modifiers = {
     id = 'size',
     add = {
@@ -27,11 +27,11 @@ local fineBiped = {
 }
 local fineQuadruped = fineBiped
 fineQuadruped.modifiers.multiply.carryCapacity = 0.25
-local fine = { 'biped' = fineBiped, 'quadruped' = fineQuadruped }
+local fine = { biped = fineBiped, quadruped = fineQuadruped }
 
 -- Diminutive --
 local diminutiveBiped = {
-  'display' = 'Diminutive',
+  display = 'Diminutive',
   modifiers = {
     id = 'size',
     add = {
@@ -54,11 +54,11 @@ local diminutiveBiped = {
 }
 local diminutiveQuadruped = diminutiveBiped
 diminutiveQuadruped.modifiers.multiply.carryCapacity = 0.5
-local diminutive = { 'biped' = diminutiveBiped, 'quadruped' = diminutiveQuadruped }
+local diminutive = { biped = diminutiveBiped, quadruped = diminutiveQuadruped }
 
 -- Tiny --
 local tinyBiped = {
-  'display' = 'Tiny',
+  display = 'Tiny',
   modifiers = {
     id = 'size',
     add = {
@@ -81,12 +81,68 @@ local tinyBiped = {
 }
 local tinyQuadruped = tinyBiped
 tinyQuadruped.modifiers.multiply.carryCapacity = 0.75
-local tiny = { 'biped' = tinyBiped, 'quadruped' = tinyQuadruped }
+local tiny = { biped = tinyBiped, quadruped = tinyQuadruped }
+
+-- Small --
+local smallBiped = {
+  display = 'Small',
+  modifiers = {
+    id = 'size',
+    add = {
+      [ 'attack' ] = 1,
+      [ 'armorClass' ] = 1,
+      [ 'specialAttack' ] = -4,
+      [ 'hide' ] = 4,
+    },
+    multiply = {
+      [ 'carryCapacity' ] = 0.75,
+    }
+  },
+  heightDescription = '2 to 5 ft.',
+  weightDescription = '8 to 60 lb.',
+  spaceDescription = '5 ft.',
+  reach = {
+    [ 'horizontal' ] = '5ft',
+    [ 'vertical' ] = '5ft.'
+  }
+}
+local smallQuadruped = smallBiped
+smallQuadruped.modifiers.multiply.carryCapacity = 1
+local small = { biped = smallBiped, quadruped = smallQuadruped }
+
+-- Medium --
+local mediumBiped = {
+  display = 'Medium',
+  modifiers = {
+    id = 'size',
+    add = {
+      [ 'attack' ] = 0,
+      [ 'armorClass' ] = 0,
+      [ 'specialAttack' ] = -0,
+      [ 'hide' ] = 0,
+    },
+    multiply = {
+      [ 'carryCapacity' ] = 1,
+    }
+  },
+  heightDescription = '4 to 8 ft.',
+  weightDescription = '60 to 500 lb.',
+  spaceDescription = '5 ft.',
+  reach = {
+    [ 'horizontal' ] = '5ft',
+    [ 'vertical' ] = '5ft.'
+  }
+}
+local mediumQuadruped = mediumBiped
+mediumQuadruped.modifiers.multiply.carryCapacity = 1.25
+local medium = { biped = mediumBiped, quadruped = mediumQuadruped }
 
 local _M = {}
 
 _M[ 'fine' ] = fine
 _M[ 'diminutive' ] = diminutive
 _M[ 'tiny' ] = tiny
+_M[ 'small' ] = small
+_M[ 'medium' ] = medium
 
 return _M
